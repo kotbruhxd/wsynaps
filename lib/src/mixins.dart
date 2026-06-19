@@ -1,5 +1,5 @@
 import "package:meta/meta.dart";
-import 'package:synaps/src/controller.dart';
+import "package:synaps/src/controller.dart";
 
 /// Applying this mixin to your controller class will make the following work:
 /// 

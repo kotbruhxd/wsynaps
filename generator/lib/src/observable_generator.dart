@@ -78,7 +78,7 @@ class ObservableGenerator extends GeneratorForAnnotation<Controller> {
   String generateForAnnotatedElement(Element element, 
       ConstantReader classAnnotation, BuildStep buildStep) {
     
-    if (element is ClassElement && !element.isEnum) {
+    if (element is ClassElement) {
       final buffer = StringBuffer();
 
       final parentClassName = element.displayName;
@@ -170,7 +170,7 @@ class ObservableGenerator extends GeneratorForAnnotation<Controller> {
               buffer.writeln("}");
             }
 
-            if(!field.isFinal) {
+            if(!field.isFinal && field.setter != null) {
               buffer.writeln("@override");
               buffer.writeln("set ${field.name}(${typeString} value) {");
               if(field.type.nullabilitySuffix == NullabilitySuffix.none) {
@@ -201,7 +201,7 @@ class ObservableGenerator extends GeneratorForAnnotation<Controller> {
               buffer.writeln("}");
             }
 
-            if(!field.isFinal) {
+            if(!field.isFinal && field.setter != null) {
               buffer.writeln("@override");
               buffer.writeln("set ${field.name}(${typeString} value) {");
               if(field.type.nullabilitySuffix == NullabilitySuffix.none) {
@@ -227,7 +227,7 @@ class ObservableGenerator extends GeneratorForAnnotation<Controller> {
               buffer.writeln("}");
             }
 
-            if(!field.isFinal) {
+            if(!field.isFinal && field.setter != null) {
               buffer.writeln("@override");
               buffer.writeln("set ${field.name}(${typeString} value) {");
               buffer.writeln("boxedValue.${field.name} = value;");
@@ -246,7 +246,7 @@ class ObservableGenerator extends GeneratorForAnnotation<Controller> {
             buffer.writeln("}");
           }
 
-          if(!field.isFinal) {
+          if(!field.isFinal && field.setter != null) {
             buffer.writeln("@override");
             buffer.writeln("set ${field.name}(${typeString} value) {");
             buffer.writeln("super.${field.name} = value;");
@@ -415,20 +415,23 @@ class ObservableGenerator extends GeneratorForAnnotation<Controller> {
         }
 
         if(recElement.supertype != null) {
-          if(recElement.supertype!.element is ClassElement) {
-            recurseSubclass(recElement.supertype!.element,seen);
+          final element = recElement.supertype!.element;
+          if(element is ClassElement) {
+            recurseSubclass(element,seen);
           }
         }
 
         for(final mxn in recElement.mixins) {
-          if(mxn.element is ClassElement) {
-            recurseSubclass(mxn.element,seen);
+          final element = mxn.element;
+          if(element is ClassElement) {
+            recurseSubclass(element,seen);
           }
         }
 
         for(final interface in recElement.interfaces) {
-          if(interface.element is ClassElement) {
-            recurseSubclass(interface.element,seen);
+          final element = interface.element;
+          if(element is ClassElement) {
+            recurseSubclass(element,seen);
           }
         }
       }

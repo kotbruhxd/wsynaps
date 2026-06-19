@@ -1,10 +1,10 @@
 library synaps;
 
-export 'package:synaps/synaps.dart';
+export "package:synaps/synaps.dart";
 
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:synaps/synaps.dart';
+import "package:flutter/rendering.dart";
+import "package:flutter/widgets.dart";
+import "package:synaps/synaps.dart";
 
 /// A stateful widget that wraps Synaps
 /// It takes a build function as its constructor parameter.

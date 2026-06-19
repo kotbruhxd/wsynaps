@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:synaps_flutter/synaps_flutter.dart';
+import "package:flutter/material.dart";
+import "package:synaps_flutter/synaps_flutter.dart";
 
 part "main.g.dart";
 
@@ -32,11 +32,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: "Flutter Demo",
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: "Flutter Demo Home Page"),
     );
   }
 }
@@ -61,14 +61,14 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              "You have pushed the button this many times:",
             ),
             // Use Rx() to link Synaps to Flutter
             // and update everything inside this lambda
             // whenever any @Observables that were used
             // inside it changes
             Rx(() => Text(
-              '${controller.counter}',
+              "${controller.counter}",
               style: Theme.of(context).textTheme.headline4,
             )),
           ],
@@ -79,19 +79,19 @@ class MyHomePage extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: controller.incrementCounter,
-            tooltip: 'Increment',
+            tooltip: "Increment",
             child: Icon(Icons.add),
           ),
           SizedBox(width: 15),
           FloatingActionButton(
             onPressed: controller.zeroCounter,
-            tooltip: 'Zero',
+            tooltip: "Zero",
             child: Icon(Icons.settings_backup_restore),
           ),
           SizedBox(width: 15),
           FloatingActionButton(
             onPressed: controller.decrementCounter,
-            tooltip: 'Decrement',
+            tooltip: "Decrement",
             child: Icon(Icons.remove),
           ),
         ],
